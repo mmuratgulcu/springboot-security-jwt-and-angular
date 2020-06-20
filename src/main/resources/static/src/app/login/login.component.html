@@ -1,0 +1,38 @@
+<div class="simple-login-container">
+    <h2>Login Form</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+        <div class="row form-group">
+            <div class="col-md-12">
+                <input type="text" class="form-control" placeholder="Kullanıcı Adı" formControlName="username">
+            </div>
+            <small id="usernameMsg" class="col-md-12 form-text text-muted">
+                <div *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').dirty">
+                    Kullanıcı Adı Boş Olamaz
+                </div>
+            </small>
+        </div>
+        <div class="row  form-group">
+            <div class="col-md-12">
+                <input type="password" placeholder="Şifrenizi giriniz" class="form-control" formControlName="password">
+            </div>
+            <small id="usernameMsg" class="col-md-12 form-text text-muted">
+                <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').dirty">
+                    Şifre Boş Olamaz
+                </div>
+            </small>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="status">
+            {{errorMsg}}
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="submit" value="Login" class="btn btn-block btn-login" [disabled]="!loginForm.valid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="button" class="btn btn-block btn-primary" value="Register" (click)="toRegister()">
+            </div>
+        </div>
+    </form>    
+</div>

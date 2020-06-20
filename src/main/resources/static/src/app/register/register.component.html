@@ -1,0 +1,72 @@
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>Kullanıcı Kayıt</p>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Adınız *" formControlName="name" />
+                            <small class="col-md-6 form-text text-muted">
+                                <div
+                                    *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').dirty">
+                                    Adınız Boş Olamaz
+                                </div>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Soyadınız *"
+                                formControlName="surname" />
+                            <small class="col-md-6 form-text text-muted">
+                                <div
+                                    *ngIf="registerForm.get('surname').hasError('required') && registerForm.get('surname').dirty">
+                                    Soyadınız Boş Olamaz
+                                </div>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Kullanıcı Adınız *"
+                                formControlName="username" />
+                            <small class="col-md-6 form-text text-muted">
+                                <div
+                                    *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').dirty">
+                                    Kullanıcı Adınız Boş Olamaz
+                                </div>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Mailiniz *" formControlName="email"/>
+                            <small class="col-md-6 form-text text-muted">
+                                <div
+                                    *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').dirty">
+                                    Mailiniz Boş Olamaz
+                                </div>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Şifreniz *"
+                                formControlName="password" />
+                            <small class="col-md-6 form-text text-muted">
+                                <div
+                                    *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').dirty">
+                                    Şifreniz Boş Olamaz
+                                </div>
+                            </small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="status">
+                    Kayıt Başarılı
+                </div>
+                <button type="submit" class="btn btn-block btn-primary"
+                    [disabled]="!registerForm.valid" >Register</button>
+                <input type="button" value="Login" class="btn btn-block btn-login" (click)="toLogin()">
+            </div>
+        </form>
+    </div>
+</div>
